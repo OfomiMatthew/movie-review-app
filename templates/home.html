@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+{% block title %} Home Page {% endblock title %}
+
+{% block content %}
+
+
+{% if 'username' in session %}
+    {% for movie in movies.Search %}
+    <div class="col-sm mb-4 mt-5">
+        <div class="card" style="width: 22.1rem">
+            <img src="{{ movie.Poster }}" class="card-img-top" width="400" height="400" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ movie.Title }}</h5>
+                <p class="card-text">{{ movie.Year }}</p>
+                <a href="{{ url_for('single_movie', title=movie.Title) }}" class="btn btn-primary">Check out</a>
+                <img alt="" />
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+{% endif %}
+{% endblock content %}
+
+
+
+

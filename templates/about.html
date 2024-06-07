@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    About
+{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+    <section class="text-center mb-5">
+        <h1 class="display-4">Welcome to the Movie App</h1>
+        <p class="lead">Discover movies, get detailed information, and share your reviews!</p>
+    </section>
+    
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow-lg h-100">
+                <div class="card-body">
+                    <h3 class="card-title">Our Features</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Search for movies by title and year.</li>
+                        <li class="list-group-item">View detailed information about each movie.</li>
+                        <li class="list-group-item">Read and write reviews for your favorite movies.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow-lg h-100">
+                <div class="card-body">
+                    <h3 class="card-title">How It Works</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Search Movies:</strong> Use the search bar on the homepage to find movies by title and optionally filter by year.</li>
+                        <li class="list-group-item"><strong>Movie Details:</strong> Click on a movie to view detailed information, including the plot, actors, and more.</li>
+                        <li class="list-group-item"><strong>Reviews:</strong> Logged-in users can write reviews for movies and also edit their own reviews.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="card shadow-lg p-4 mt-4">
+        <h3 class="mb-3">Getting Started</h3>
+        <p class="lead">To use all features of the app, please log in. If you don't have an account, you can create one by signing up on the login page.</p>
+    </section>
+</div>
+{% endblock content %}

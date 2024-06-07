@@ -1,0 +1,99 @@
+{% extends 'index.html' %}
+
+
+{% block title %}
+  Movie
+{% endblock title %}
+
+
+{% block content %}
+  <h2>Movie Details</h2>
+
+    <div class="mb-3" style="max-width: 960px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{{movie.Poster}}" class="img-fluid card-img-top rounded p-2 " width="400" height="400" alt="...">
+         
+        </div>
+        <div class="card col-md-8 p-5">
+          <div class="card-body">
+            <h5 class="card-title">{{movie.Title}}</h5>
+            <p class="card-text text-body-secondary mt-2">{{movie.Plot}}</p>
+            <p class="card-text"><small>Year: {{movie.Year}} </small></p>
+            <p class="card-text"><small>Runtime: {{movie.Runtime}}</small> </p>
+            <p class="card-text"><small>Language: {{movie.Language}}</small> </p>
+            <p class="card-text"><small>Actors: {{movie.Actors}}</small> </p>
+        
+            <p class="card-text mt-2"><small>Genre: {{movie.Genre}}</small></p>
+            <p class="card-text mt-2"><small>Awards: {{movie.Awards}}</small></p>
+            <p><small>Rating:
+              
+              {% if movie.imdbRating | float > 6.5 %}
+             
+              <span class="card-text mt-n5 bg-success p-1 rounded text-light">{{movie.imdbRating}}</span>
+  
+              {% else %}
+              <span class="card-text mt-n5 bg-danger p-1 rounded text-light">{{movie.imdbRating}}</span>
+              {% endif %}
+            </small>
+            </p>
+
+            <div>
+              <a class="btn btn-primary" href="{{url_for('add_to_favorite',title=movie.Title)}}">Add to favorite</a>
+            </div>
+
+
+          
+
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+ <!-- Review Form -->
+ {% if session['username'] %}
+ <div class="mb-3">
+   <h3>Add a Review</h3>
+   <form action="{{ url_for('add_review', title=movie.Title) }}" method="POST">
+     <div class="mb-3">
+       <label for="review" class="form-label">Your Review</label>
+       <textarea class="form-control" id="review" name="review" rows="3" required></textarea>
+     </div>
+     <button type="submit" class="btn btn-primary">Submit</button>
+   </form>
+ </div>
+ {% else %}
+ <p><a href="{{ url_for('login') }}">Log in</a> to add a review.</p>
+ {% endif %}
+
+ 
+  <!-- Display Reviews -->
+  <div class="mb-3">
+    <h3>Reviews</h3>
+    {% for review in reviews %}
+        <div class="card mb-2">
+            <div class="card-body">
+                <h5 class="card-title">{{ review.username }}</h5>
+                <p class="card-text">{{ review.review }}</p>
+                {% if session['username'] == review.username %}
+                    <a href="{{ url_for('edit_review', review_id=review.id) }}" class="btn btn-warning">Edit</a>
+                    <form action="{{ url_for('delete_review', review_id=review.id) }}" method="POST" style="display:inline;">
+                        <input type="hidden" name="movie_title" value="{{ movie.Title }}">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+  {% endfor %}
+</div>
+
+
+
+
+
+
+{% endblock content %}
+    
+    

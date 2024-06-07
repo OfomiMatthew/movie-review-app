@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+{% block title %}
+  Edit Review
+{% endblock title %}
+
+{% block content %}
+  <h2>Edit Your Review</h2>
+  <form action="{{ url_for('edit_review', review_id=review_id) }}" method="POST">
+    <input type="hidden" name="movie_title" value="{{ review.movie_title }}">
+    <div class="mb-3">
+      <label for="review" class="form-label">Your Review</label>
+      <textarea class="form-control" id="review" name="review" rows="3" required>{{ review.review }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{% endblock content %}
+
