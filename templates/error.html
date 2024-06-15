@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    404 Not Found!
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="error-container text-center p-4 border rounded bg-white shadow-sm">
+                    <h1 class="display-1">404</h1>
+                    <p class="lead">Page not found!</p>
+                    <img src="https://httpcats.com/404.jpg" alt="cat in box" class="img-fluid mb-4">
+                    <a href="/" class="btn btn-primary">Go Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

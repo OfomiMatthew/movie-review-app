@@ -124,6 +124,12 @@ def add_review(title):
         return redirect(url_for('login'))
 
 
+@app.errorhandler(404)
+def handle_404(e):
+    return render_template('error.html'), 404
+
+
+
 # Editing Reviews
 @app.route('/edit_review/<int:review_id>', methods=['GET', 'POST'])
 def edit_review(review_id):
@@ -250,7 +256,7 @@ def remove_from_list(title):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
 
 
 
